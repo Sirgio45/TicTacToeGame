@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TicTacToeGame</string>
+    <string name="action_settings">New Game</string>
+    <string name="close_settings">Close Game</string>
+    <string name="X_Name">Enter Player Name</string>
+    <string name="y_Name">Name for Y</string>
+</resources>
