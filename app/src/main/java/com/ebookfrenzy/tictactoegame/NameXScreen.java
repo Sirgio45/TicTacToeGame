@@ -36,7 +36,7 @@ public class NameXScreen extends Activity
         String userNameForX = String.valueOf(xuserName.getText());
         String userNameForY = String.valueOf(yuserName.getText());
 
-        Intent goingBack = new Intent();
+        Intent goingBack = new Intent(userNameForX + userNameForY);
       // Intent goingBackAgain= new Intent();
 
         goingBack.putExtra("UserNameForX",userNameForX);
