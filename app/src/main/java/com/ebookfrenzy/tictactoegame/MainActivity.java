@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,10 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+    String NameX;
+    String NameY;
 
     int turn = 1;
 
@@ -29,13 +34,25 @@ public class MainActivity extends AppCompatActivity {
 
     TextView GameMessage; //shows the message if x or o wins and the name of the players
 
+    private static final String TAG="StateChangeTag";
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Log.i(TAG,"onCreate");
         setSupportActionBar(toolbar);
+
+       // Bundle bundle=getIntent().getExtras();
+       // NameX = bundle.getString("UserNameForX");
+       // NameY = bundle.getString("UserNameForY");
+
+
+
 
         One = (Button) findViewById(R.id.buttonOne);//assigns the button
         Two = (Button) findViewById(R.id.buttonTwo);//assigns the button
@@ -64,10 +81,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         One.setText("X");
                         One.setEnabled(false);
+                        GameMessage.setText(NameY + " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         One.setText("O");
                         One.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -85,10 +104,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         Two.setText("X");
                         Two.setEnabled(false);
+                        GameMessage.setText(NameY + " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         Two.setText("O");
                         Two.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -106,10 +127,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         Three.setText("X");
                         Three.setEnabled(false);
+                        GameMessage.setText(NameY + " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         Three.setText("O");
                         Three.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -127,10 +150,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         Four.setText("X");
                         Four.setEnabled(false);
+                        GameMessage.setText(NameY + " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         Four.setText("O");
                         Four.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -148,10 +173,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         Five.setText("X");
                         Five.setEnabled(false);
+                        GameMessage.setText(NameY + " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         Five.setText("O");
                         Five.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -169,10 +196,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         Six.setText("X");
                         Six.setEnabled(false);
+                        GameMessage.setText(NameY+ " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         Six.setText("O");
                         Six.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -190,10 +219,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         Seven.setText("X");
                         Seven.setEnabled(false);
+                        GameMessage.setText(NameY + " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         Seven.setText("O");
                         Seven.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -211,10 +242,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         Eight.setText("X");
                         Eight.setEnabled(false);
+                        GameMessage.setText(NameY + " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         Eight.setText("O");
                         Eight.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -232,10 +265,12 @@ public class MainActivity extends AppCompatActivity {
                         turn = 2;
                         Nine.setText("X");
                         Nine.setEnabled(false);
+                        GameMessage.setText(NameY + " Turn");
                     } else if (turn == 2) {
                         turn = 1;
                         Nine.setText("O");
                         Nine.setEnabled(false);
+                        GameMessage.setText(NameX + " Turn");
                     }
 
                 }
@@ -251,6 +286,106 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        if (savedInstanceState!=null)
+        {
+            One.setText(savedInstanceState.getString("text"));
+            Two.setText(savedInstanceState.getString("text1"));
+            Three.setText(savedInstanceState.getString("text2"));
+            Four.setText(savedInstanceState.getString("text3"));
+            Five.setText(savedInstanceState.getString("text4"));
+            Six.setText(savedInstanceState.getString("text5"));
+            Seven.setText(savedInstanceState.getString("text6"));
+            Eight.setText(savedInstanceState.getString("text7"));
+            Nine.setText(savedInstanceState.getString("text8"));
+            NameX=(savedInstanceState.getString("text10"));
+            NameY=(savedInstanceState.getString("text11"));
+
+            GameMessage.setText(savedInstanceState.getString("text9"));
+        }
+
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Log.i(TAG,"onStart");
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Log.i(TAG,"onResume");
+    }
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        Log.i(TAG,"onPause");
+    }
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        Log.i(TAG,"onRestart");
+    }
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        Log.i(TAG,"onStop");
+    }
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        Log.i(TAG,"onDestroy");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+
+        Log.i(TAG,"onSaveInstanceState");
+
+        outState.putString("text",One.getText().toString());
+        outState.putString("text1",Two.getText().toString());
+        outState.putString("text2",Three.getText().toString());
+        outState.putString("text3",Four.getText().toString());
+        outState.putString("text4",Five.getText().toString());
+        outState.putString("text5",Six.getText().toString());
+        outState.putString("text6",Seven.getText().toString());
+        outState.putString("text7",Eight.getText().toString());
+        outState.putString("text8",Nine.getText().toString());
+        outState.putString("text9",GameMessage.getText().toString());
+        outState.putString("text10",NameX);
+        outState.putString("text11",NameY);
+
+
+
+
+
+
+
+
+    }
+
+
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i(TAG,"onRestoreInstanceState");
+
+
+
+
+
     }
 
     public void newGame() {
@@ -295,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
         i = Nine.getText().toString();
 
         if (a.equals("X") && b.equals("X") && c.equals("X")) {
-            GameMessage.setText("Winner Player X");
+            GameMessage.setText("Winner" + NameX);
             end = true;
 
 
@@ -303,78 +438,78 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (a.equals("X") && e.equals("X") && i.equals("X")) {
-            GameMessage.setText("Winner Player X");
+            GameMessage.setText("Winner "+NameX);
             end = true;
         }
         if (a.equals("X") && d.equals("X") && g.equals("X")) {
-            GameMessage.setText("Winner Player X");
+            GameMessage.setText("Winner "+NameX);
             end = true;
         }
         if (b.equals("X") && e.equals("X") && h.equals("X")) {
-            GameMessage.setText("Winner Player X");
+            GameMessage.setText("Winner "+NameX);
             end = true;
         }
         if (c.equals("X") && f.equals("X") && i.equals("X")) {
-            GameMessage.setText("Winner Player X");
+            GameMessage.setText("Winner "+NameX);
             end = true;
         }
         if (d.equals("X") && e.equals("X") && f.equals("X")) {
-            GameMessage.setText("Winner Player X");
+            GameMessage.setText("Winner "+NameX);
             end = true;
         }
 
         if (g.equals("X") && h.equals("X") && i.equals("X")) {
-            GameMessage.setText("Winner Player X");
+            GameMessage.setText("Winner "+NameX);
             end = true;
         }
         if (g.equals("X") && e.equals("X") && c.equals("X")) {
-            GameMessage.setText("Winner Player X");
+            GameMessage.setText("Winner "+NameX);
             end = true;
         }
 
         /////////////////////////////////////////////
         if (a.equals("O") && b.equals("O") && c.equals("O")) {
-            GameMessage.setText("Winner Player O");
+            GameMessage.setText("Winner " + NameY);
             end = true;
         }
         if (a.equals("O") && e.equals("O") && i.equals("O")) {
-            GameMessage.setText("Winner Player O");
+            GameMessage.setText("Winner " + NameY);
             end = true;
         }
         if (a.equals("O") && d.equals("O") && g.equals("O")) {
-            GameMessage.setText("Winner Player O");
+            GameMessage.setText("Winner " + NameY);
             end = true;
         }
         if (b.equals("O") && e.equals("O") && h.equals("O")) {
-            GameMessage.setText("Winner Player O");
+            GameMessage.setText("Winner " + NameY);
             end = true;
         }
         if (c.equals("O") && f.equals("O") && i.equals("O")) {
-            GameMessage.setText("Winner Player O");
+            GameMessage.setText("Winner " + NameY);
             end = true;
         }
         if (d.equals("O") && e.equals("O") && f.equals("O")) {
-            GameMessage.setText("Winner Player O");
+            GameMessage.setText("Winner " + NameY);
             end = true;
         }
 
         if (g.equals("O") && h.equals("O") && i.equals("O")) {
-            GameMessage.setText("Winner Player O");
+            GameMessage.setText("Winner " + NameY);
             end = true;
         }
 
-        if (g.equals("O") && e.equals("O") && c.equals("O")) {
-            GameMessage.setText("Winner Player O");
+        if (g.equals("O") && e.equals("O") && c.equals("O"))
+        {
+            GameMessage.setText("Winner " + NameY);
             end = true;
         }
-          /*  else if (end == false)
-            {
-                GameMessage.setText("IT'S A TIE!");
-                end=true;
-            }*/
+         if(a!="" && b!=""&& c!="" && d!="" && e!=""&& f!="" && g!="" && h!="" && i!=""  )
+         {
+             GameMessage.setText("Its a Tie");
+             end=true;
+         }
 
-
-        if (end) {
+        if (end==true) {
             One.setEnabled(false);
             Two.setEnabled(false);
             Three.setEnabled(false);
@@ -384,10 +519,7 @@ public class MainActivity extends AppCompatActivity {
             Seven.setEnabled(false);
             Eight.setEnabled(false);
             Nine.setEnabled(false);
-            /*if (end == false)
-            {
-                GameMessage.setText("Its a tie");
-            }*/
+
         }
     }
 
@@ -412,8 +544,9 @@ public class MainActivity extends AppCompatActivity {
 
 
             Intent getNameScreen = new Intent(this, NameXScreen.class);
+            startActivityForResult(getNameScreen,1);
 
-            startActivity(getNameScreen);
+            //startActivity(getNameScreen);
 
 
 
@@ -444,4 +577,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent data)
+    {
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode==1)
+        {
+            NameX=data.getStringExtra("UserNameForX").toString();
+            NameY=data.getStringExtra("UserNameForY").toString();
+        }
+    }
+
 }

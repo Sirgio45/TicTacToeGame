@@ -12,6 +12,12 @@ import android.widget.EditText;
 
 public class NameXScreen extends Activity
 {
+    Intent goingBack;
+    String userNameForX;
+    String userNameForY;
+    EditText xuserName;
+    EditText yuserName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -19,7 +25,7 @@ public class NameXScreen extends Activity
 
         setContentView(R.layout.namex_layout);
 
-        Intent activityThatCalled = getIntent();
+        goingBack = new Intent();
 
        // String PreviousActivity= activityThatCalled.getExtras().getString("CallingActivity");
 
@@ -30,18 +36,18 @@ public class NameXScreen extends Activity
 
     public void onSendXName (View view)
     {
-        EditText xuserName = (EditText)findViewById(R.id.editTextEnterXName);
-        EditText yuserName = (EditText)findViewById(R.id.editTextEnterYName);
+       xuserName = (EditText)findViewById(R.id.editTextEnterXName);
+       yuserName = (EditText)findViewById(R.id.editTextEnterYName);
 
-        String userNameForX = String.valueOf(xuserName.getText());
-        String userNameForY = String.valueOf(yuserName.getText());
+       userNameForX = String.valueOf(xuserName.getText());
+        userNameForY = String.valueOf(yuserName.getText());
 
-        Intent goingBack = new Intent(userNameForX + userNameForY);
+        Intent goingBack = new Intent();
       // Intent goingBackAgain= new Intent();
 
-        goingBack.putExtra("UserNameForX",userNameForX);
-        goingBack.putExtra("UserNameForY", userNameForY);
-
+        goingBack.putExtra("UserNameForX", String.valueOf(userNameForX));
+        goingBack.putExtra("UserNameForY", String.valueOf(userNameForY));
+        setResult(RESULT_OK,goingBack);
         finish();
 
     }
